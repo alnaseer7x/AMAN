@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AMAN"
+description = "صفحة رئيسية عربية لمنصة AMAN توضّح اتفاقات المشاريع وتقسيم المستحقات إلى مراحل، وتساعد العملاء ومقدمي الخدمات المستقلة على فهم طريقة العمل."
+version = "1.0.0"
+id = "artifacts/aman"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25092
+
+[services.development]
+run = "pnpm --filter @workspace/aman run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aman", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/aman/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25092"
+BASE_PATH = "/"
