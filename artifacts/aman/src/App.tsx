@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowLeft, Check, CircleHelp, Eye, FileText, MessageCircle, ShieldCheck } from 'lucide-react';
+import { SupabaseConnectionTest } from '@/components/supabase-connection-test';
 
 const questions = [
   {
@@ -153,6 +154,8 @@ function App() {
             </div>
           </div>
         </section>
+
+        {import.meta.env.DEV && <SupabaseConnectionTest />}
 
         <section className="final-cta" id="start">
           <div className="wrap cta-inner">
